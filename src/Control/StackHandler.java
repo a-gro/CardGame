@@ -1,6 +1,6 @@
 package Control;
 
-import Model.Card;
+import Model.Cards;
 import Model.Stack;
 import View.DrawingPanel;
 import View.InteractableObject;
@@ -15,8 +15,8 @@ import java.awt.event.MouseEvent;
  */
 public class StackHandler implements InteractableObject {
 
-    private Stack<Card> concealedCards; //verdeckt
-    private Stack<Card> revealedCards; //aufgedeckt
+    private Stack<Cards> concealedCards; //verdeckt
+    private Stack<Cards> revealedCards; //aufgedeckt
 
     public StackHandler (MainFrame frame) {
         concealedCards = new Stack<>();
@@ -47,12 +47,12 @@ public class StackHandler implements InteractableObject {
 
     }
 
-    public String flipConcealed() {
+    public void flipConcealed() {
         if(!concealedCards.isEmpty()) {
             revealedCards.push(concealedCards.top());
             concealedCards.pop();
-            return "Siehe da, eine neue Karte wurde geöffnet!";
+            //return "Siehe da, eine neue Karte wurde geöffnet!";
         }
-        return "Stapel leer!";
+        //return "Stapel leer!";
     }
 }

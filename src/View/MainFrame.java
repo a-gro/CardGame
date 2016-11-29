@@ -1,10 +1,12 @@
 package View;
 
+import Control.MainController;
+
 import javax.swing.*;
 import java.util.ArrayList;
 
 /**
- * Created by 204g05 on 28.11.2016.
+ * Created by Jean-Pierre on 15.11.2016.
  */
 public class MainFrame extends JFrame {
 
@@ -13,6 +15,7 @@ public class MainFrame extends JFrame {
     // Referenzen
     private DrawingPanel activePanel;
     private ArrayList<DrawingPanel> panels;
+    private MainController main;
 
     /**
      * Konstruktor
