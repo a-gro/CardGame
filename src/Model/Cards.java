@@ -2,6 +2,8 @@ package Model;
 
 import View.DrawingPanel;
 import View.InteractableObject;
+import Model.Suits;
+import Model.Values;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +16,13 @@ import java.awt.geom.Rectangle2D;
 public class Cards implements InteractableObject {
 
     private boolean flipped;
-    private String suit;
-    private String value;
+    private Suits suit;
+    private Values value;
     private double xPos;
     private double yPos;
     private Rectangle2D rectangle;
 
-    public Cards(String suit, String value, double xPos, double yPos) {
+    public Cards(Suits suit, Values value, double xPos, double yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
         this.suit = suit;
@@ -37,31 +39,56 @@ public class Cards implements InteractableObject {
     public void draw(DrawingPanel dp, Graphics2D g2d) {
         g2d.setColor(new Color(0, 0, 0));
         g2d.draw(rectangle);
-        if ("Heart".equals(suit) && flipped == true) {
+        if (Suits.HEART.equals(suit) && flipped) {
+            g2d.setColor(new Color(255, 255, 255));
+            g2d.fill(rectangle);
             g2d.setColor(new Color(255, 0, 0));
-            g2d.fill(rectangle);
+            g2d.drawString("♥",(int)xPos+149, (int)yPos+50);
+            g2d.drawString("♥",(int)xPos+149, (int)yPos+450);
         }
-        if ("Diamond".equals(suit) && flipped == true) {
+        if (Suits.DIAMOND.equals(suit) && flipped) {
+            g2d.setColor(new Color(255, 255, 255));
+            g2d.fill(rectangle);
             g2d.setColor(new Color(255, 0, 0));
-            g2d.fill(rectangle);
+            g2d.drawString("♦",(int)xPos+149, (int)yPos+50);
+            g2d.drawString("♦",(int)xPos+149, (int)yPos+450);
         }
-        if ("Club".equals(suit) && flipped == true) {
+        if (Suits.CLUB.equals(suit) && flipped) {
+            g2d.setColor(new Color(255, 255, 255));
+            g2d.fill(rectangle);
             g2d.setColor(new Color(0, 0, 0));
-            g2d.fill(rectangle);
+            g2d.drawString("♣",(int)xPos+149, (int)yPos+50);
+            g2d.drawString("♣",(int)xPos+149, (int)yPos+450);
         }
-        if ("Spade".equals(suit) && flipped == true) {
+        if (Suits.SPADE.equals(suit) && flipped) {
+            g2d.setColor(new Color(255, 255, 255));
+            g2d.fill(rectangle);
             g2d.setColor(new Color(0, 0, 0));
-            g2d.fill(rectangle);
+            g2d.drawString("♠",(int)xPos+149, (int)yPos+50);
+            g2d.drawString("♠",(int)xPos+149, (int)yPos+450);
         }
-        if (flipped == false) {
+        if (!flipped) {
             g2d.setColor(new Color(0, 255, 150));
             g2d.fill(rectangle);
         }
-        if (flipped == true) {
+        if (flipped) {
             g2d.setColor(new Color(0, 0, 0));
-            g2d.drawString(value, 250, 300);
+            g2d.drawString(value.toString(), (int)xPos+140, (int)yPos+250);
         }
+    }
 
+    public void flip() {
+        this.xPos = xPos+600;
+        rectangle.setFrame(xPos, yPos, 300,500);
+        flipped = true;
+    }
+
+    public Values getValue(){
+        return value;
+    }
+
+    public Suits getSuit(){
+        return suit;
     }
 
     @Override
@@ -83,9 +110,4 @@ public class Cards implements InteractableObject {
     public void mouseReleased(MouseEvent e) {
 
     }
-
-    public String getValue(){
-        return value;
-    }
-
 }

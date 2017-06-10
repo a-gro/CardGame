@@ -22,3 +22,4 @@ public class MainProgram {
         new MainController(new MainFrame("Kartenspiel",50,50,1100,900));
     }
 }
+//test
